@@ -1,0 +1,10 @@
+SEED 4567
+Cm   1.0e-10
+Vth  -50.0e-3
+delta_Vth 2e-3
+tau_sra 1.5e-3
+sra_a   1.0e-9
+sra_b   1.0e-8
+tau_gref   1.0e-4
+delta_gref 1.0e-10
+sigma_i_noise   0.0

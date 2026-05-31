@@ -1,0 +1,26 @@
+
+#echo "cell_switchesi.misc = 1;" > switch.inc
+#make clean
+#make
+##cell_switches.misc picks out particular aspects of a single neuron in the bursting layer to printf for plotting
+#./main.exe > H_t
+
+echo "cell_switchesi.misc = 2;" > switch.inc
+make clean
+make
+./main.exe > Vm
+
+echo "cell_switchesi.misc = 3;" > switch.inc
+make clean
+make
+./main.exe > Vms
+
+#echo "cell_switchesi.misc = 4;" > switch.inc
+#make clean
+#make
+#./main.exe > I_t
+
+echo "cell_switchesi.misc = 5;" > switch.inc
+make clean
+make
+./main.exe > Isyn

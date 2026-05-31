@@ -1,0 +1,20 @@
+[
+    [
+        { "name" : "B_cellLayer", "size" : "BIG",   "params" : "cell_params_wave", "loc" : {"x" : 600,"y" : 100 }, "switch" : "cell_switches2",  "title" : "\"B0 H\""},
+        { "name" : "I_cellLayer", "size" : "BIG",   "params" : "cell_params", "loc" : {"x" : 0,   "y" : 100 }, "switch" : "cell_switches_i", "title" : "timeString"},
+        { "name" : "A_cellLayer", "size" : "BIG",   "params" : "cell_params", "loc" : {"x" : 1000, "y" : 100 }, "switch" : "cell_switches2",  "title" : "\"A0\""},
+        { "name" : "A_cellLayer", "size" : "BIG",   "params" : "cell_params", "loc" : {"x" : 300, "y" : 100 }, "switch" : "cell_switches2",  "title" : "\"A1\""},
+        { "name" : "C_cellLayer", "size" : "SMALL",   "params" : "cell_params", "loc" : {"x" : 1300, "y" : 100 }, "switch" : "cell_switches2",  "title" : "\"C0\""}
+    ],
+    [
+        { "name" : "s_I_A0",  "size" : "BIG",   "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_i",    "rf" : "R_121", "radius" : "0", "src" : "I_cellLayer_0", "dest" : "A_cellLayer_0", "ratio" : "B2B" },
+        { "name" : "s_A1_A0", "size" : "BIG",   "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_a1a0", "rf" : "R_121", "radius" : "0", "src" : "A_cellLayer_1", "dest" : "A_cellLayer_0", "ratio" : "B2B" },
+        { "name" : "s_A0_A1", "size" : "BIG",   "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_a0a1", "rf" : "R_121", "radius" : "0", "src" : "A_cellLayer_0", "dest" : "A_cellLayer_1", "ratio" : "B2B" },
+        { "name" : "s_I_B0", "size" : "BIG", "ws" : 1, "params" : "syn_weak",   "switch" : "syn_switches_i", "rf" : "R_H", "radius"   : "12","src" : "I_cellLayer_0", "dest" : "B_cellLayer_0", "ratio" : "B2B" },
+        { "name" : "s_B0_B0","size" : "BIG", "ws" : 1, "params" : "syn_wave",   "switch" : "syn_switches_b0b0", "rf" : "R_AE", "radius"  : "1", "src" : "B_cellLayer_0", "dest" : "B_cellLayer_0", "ratio" : "B2B" },
+        { "name" : "s_B0_A1","size" : "BIG", "ws" : 1, "params" : "syn_inhib",   "switch" : "syn_switches_b0a1", "rf" : "R_AE", "radius"  : "5", "src" : "B_cellLayer_0", "dest" : "A_cellLayer_1", "ratio" : "B2B" },
+        { "name" : "s_B0_C0","size" : "SMALL", "ws" : 1, "params" : "syn_params",   "switch" : "syn_switches_i", "rf" : "R_121", "radius"  : "0", "src" : "B_cellLayer_0", "dest" : "C_cellLayer_0", "ratio" : "B2S" },
+        { "name" : "s_C0_B0","size" : "SMALL", "ws" : 1, "params" : "syn_inhib_weak",   "switch" : "syn_switches_i", "rf" : "R_AE", "radius"  : "1", "src" : "C_cellLayer_0", "dest" : "B_cellLayer_0", "ratio" : "S2B" }
+    ]
+]
+

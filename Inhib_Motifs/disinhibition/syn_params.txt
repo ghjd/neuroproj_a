@@ -1,0 +1,2 @@
+imax_syn       0.30e-9
+tau_syn        1.5e-3

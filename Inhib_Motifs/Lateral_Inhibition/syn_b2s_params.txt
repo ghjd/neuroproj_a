@@ -1,0 +1,3 @@
+imax_syn       0.50e-9
+tau_syn        0.5e-3
+ws		1

@@ -1,0 +1,24 @@
+[
+    [
+        { "name" : "J_cellLayer", "size" : "SMALL", "params" : "cell_params", "loc" : {"x" : 100, "y" : 400 }, "switch" : "cell_switches_i", "title" : "timeString"},
+        { "name" : "B_cellLayer", "size" : "SMALL", "params" : "cell_params", "loc" : {"x" : 400, "y" : 400 }, "switch" : "cell_switches2",  "title" : "\"C\""},
+        { "name" : "I_cellLayer", "size" : "BIG",   "params" : "cell_params", "loc" : {"x" : 0,   "y" : 100 }, "switch" : "cell_switches_i", "title" : "timeString"},
+        { "name" : "A_cellLayer", "size" : "BIG",   "params" : "cell_params", "loc" : {"x" : 300, "y" : 100 }, "switch" : "cell_switches2",  "title" : "\"C\""},
+        { "name" : "A_cellLayer", "size" : "BIG",   "params" : "cell_params", "loc" : {"x" : 600, "y" : 100 }, "switch" : "cell_switches2",  "title" : "\"C\""}
+    ],
+
+    [
+        { "name" : "s_I_A0",  "size" : "BIG",   "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_i",    "rf" : "R_121", "radius" : "0", "src" : "I_cellLayer_0", "dest" : "A_cellLayer_0", "ratio" : "B2B" },
+        { "name" : "s_J_B0",  "size" : "SMALL", "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_i",    "rf" : "R_121", "radius" : "0", "src" : "J_cellLayer_0", "dest" : "B_cellLayer_0", "ratio" : "S2S" },
+
+        { "name" : "s_A0_A0", "size" : "BIG",   "ws" : 0, "params" : "syn_params", "switch" : "syn_switches_a0a0", "rf" : "R_CS", "radius" : "16", "src" : "A_cellLayer_0", "dest" : "A_cellLayer_0", "ratio" : "B2B" },
+        { "name" : "s_B0_B0", "size" : "SMALL", "ws" : 0, "params" : "syn_params", "switch" : "syn_switches_b0b0", "rf" : "R_CS", "radius" : "16", "src" : "B_cellLayer_0", "dest" : "B_cellLayer_0", "ratio" : "S2S" },
+
+        { "name" : "s_A0_B0", "size" : "SMALL", "ws" : 0, "params" : "syn_params", "switch" : "syn_switches_a0b0", "rf" : "R_CS", "radius" : "16", "src" : "A_cellLayer_0", "dest" : "B_cellLayer_0", "ratio" : "B2S" },
+        { "name" : "s_B0_A0", "size" : "SMALL", "ws" : 0, "params" : "syn_params", "switch" : "syn_switches_b0a0", "rf" : "R_CS", "radius" : "16", "src" : "B_cellLayer_0", "dest" : "A_cellLayer_0", "ratio" : "S2B" },
+
+        { "name" : "s_A0_A1", "size" : "BIG",   "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_1",    "rf" : "R_CS", "radius" : "10", "src" : "A_cellLayer_0", "dest" : "A_cellLayer_1", "ratio" : "B2B" },
+        { "name" : "s_B0_A1", "size" : "SMALL", "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_1",    "rf" : "R_CS", "radius" : "10", "src" : "B_cellLayer_0", "dest" : "A_cellLayer_1", "ratio" : "S2B" }
+    ]
+]
+

@@ -1,0 +1,31 @@
+[
+    [
+        { "name" : "J_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 100,  "y" : 400 }, "switch" : "cell_switches_i", "title" : "\"C\""},
+        { "name" : "B_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 400,  "y" : 400 }, "switch" : "cell_switches_1",  "title" : "\"C\""},
+        { "name" : "B_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 700,  "y" : 400 }, "switch" : "cell_switches_1",  "title" : "\"C\""},
+        { "name" : "B_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 1000, "y" : 400 }, "switch" : "cell_switches_1",  "title" : "\"C\""},
+        { "name" : "B_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 1300, "y" : 400 }, "switch" : "cell_switches_1",  "title" : "\"C\""},
+        { "name" : "B_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 1600, "y" : 400 }, "switch" : "cell_switches_1",  "title" : "\"C\""},
+        { "name" : "I_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 100,  "y" : 100 }, "switch" : "cell_switches_i","title" : "timeString"},
+        { "name" : "A_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 400,  "y" : 100 }, "switch" : "cell_switches_1",  "title" : "\"C\""},
+        { "name" : "A_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 700,  "y" : 100 }, "switch" : "cell_switches_1",  "title" : "\"C\""},
+        { "name" : "A_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 1000, "y" : 100 }, "switch" : "cell_switches_1",  "title" : "\"C\""},
+        { "name" : "A_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 1300, "y" : 100 }, "switch" : "cell_switches_1",  "title" : "\"C\""},
+        { "name" : "A_cellLayer", "size" : "BIG", "params" : "cell_params", "loc" : {"x" : 1600, "y" : 100 }, "switch" : "cell_switches_1",  "title" : "\"C\""}
+    ],
+
+    [
+        { "name" : "s_I_A0",  "size" : "BIG", "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_i",    "rf" : "R_AE", "radius" : "16", "src" : "I_cellLayer_0", "dest" : "A_cellLayer_0", "ratio" : "B2B" },
+        { "name" : "s_J_B0",  "size" : "BIG", "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_i",    "rf" : "R_CS", "radius" : "16", "src" : "J_cellLayer_0", "dest" : "B_cellLayer_0", "ratio" : "B2B" },
+
+        { "name" : "s_A0_A1", "size" : "BIG",   "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_1", "rf" : "R_AE", "radius" : "16", "src" : "A_cellLayer_0", "dest" : "A_cellLayer_1", "ratio" : "B2B" },
+        { "name" : "s_A1_A2", "size" : "BIG",   "ws" : 1, "params" : "syn_params_lo", "switch" : "syn_switches_1", "rf" : "R_AE", "radius" : "16", "src" : "A_cellLayer_1", "dest" : "A_cellLayer_2", "ratio" : "B2B" },
+        { "name" : "s_A2_A3", "size" : "BIG",   "ws" : 1, "params" : "syn_params_lo", "switch" : "syn_switches_1", "rf" : "R_AE", "radius" : "16", "src" : "A_cellLayer_2", "dest" : "A_cellLayer_3", "ratio" : "B2B" },
+        { "name" : "s_A3_A4", "size" : "BIG",   "ws" : 1, "params" : "syn_params_lo", "switch" : "syn_switches_1", "rf" : "R_AE", "radius" : "16", "src" : "A_cellLayer_3", "dest" : "A_cellLayer_4", "ratio" : "B2B" },
+        { "name" : "s_B0_B1", "size" : "BIG",   "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_1", "rf" : "R_CS", "radius" : "16", "src" : "B_cellLayer_0", "dest" : "B_cellLayer_1", "ratio" : "B2B" },
+        { "name" : "s_B1_B2", "size" : "BIG",   "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_1", "rf" : "R_CS", "radius" : "16", "src" : "B_cellLayer_1", "dest" : "B_cellLayer_2", "ratio" : "B2B" },
+        { "name" : "s_B2_B3", "size" : "BIG",   "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_1", "rf" : "R_CS", "radius" : "16", "src" : "B_cellLayer_2", "dest" : "B_cellLayer_3", "ratio" : "B2B" },
+        { "name" : "s_B3_B4", "size" : "BIG",   "ws" : 1, "params" : "syn_params", "switch" : "syn_switches_1", "rf" : "R_CS", "radius" : "16", "src" : "B_cellLayer_3", "dest" : "B_cellLayer_4", "ratio" : "B2B" }
+    ]
+]
+

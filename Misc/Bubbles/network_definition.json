@@ -1,0 +1,9 @@
+[
+    [
+        { "name" : "B_cellLayer", "size" : "BIG",   "params" : "cell_params_wave", "loc" : {"x" : 600,"y" : 100 }, "switch" : "cell_switches_2",  "title" : "\"B0 H\""}
+    ],
+    [
+        { "name" : "s_B0_B0","size" : "BIG", "ws" : 1, "params" : "syn_wave",   "switch" : "syn_switches_b0b0", "rf" : "R_NN", "radius"  : "1", "src" : "B_cellLayer_0", "dest" : "B_cellLayer_0", "ratio" : "B2B" }
+    ]
+]
+

@@ -1,0 +1,14 @@
+
+Next to the src/ directory,
+mkdir <project-group>/<project>
+cp ProtoProject/* <project-group>/<project>/
+cd <project-group>/<project>/
+
+Use network_definition.json to define your circuit structure
+adjust genPats.inc to produce the stimulus patterns that you need
+Use activity.inc to define the sequencing of the simulation
+
+If the default cell or synapse synapse models don't do what you need,
+copy them into <project-group>/<project>/, adjust the as needed,
+and modify Makefile to pick up your local copies instead of the src/ copies.
+

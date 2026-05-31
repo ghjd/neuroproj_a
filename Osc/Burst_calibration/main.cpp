@@ -11,8 +11,8 @@
 
 
 //declarations, etc
-#include "../../kernel_common.h"
-#include "../../kernels.h"
+#include "../../src/kernel_common.h"
+#include "../../src/kernels.h"
 #include "declarations.h"
 
 //subroutines
@@ -27,17 +27,6 @@ void render() {
   cudaGraphicsMapResources(1, &I_layer.cuda_pbo_resource[0], 0);     cudaGraphicsResourceGetMappedPointer((void **)&I_layer.vm,     NULL, I_layer.cuda_pbo_resource[0]);
   cudaGraphicsMapResources(1, &A_layers[1].cuda_pbo_resource[0], 0); cudaGraphicsResourceGetMappedPointer((void **)&A_layers[1].vm, NULL, A_layers[1].cuda_pbo_resource[0]);
   cudaGraphicsMapResources(1, &A_layers[2].cuda_pbo_resource[0], 0); cudaGraphicsResourceGetMappedPointer((void **)&A_layers[2].vm, NULL, A_layers[2].cuda_pbo_resource[0]);
-  /*
-  cudaGraphicsMapResources(1, &A_layers[3].cuda_pbo_resource[0], 0); cudaGraphicsResourceGetMappedPointer((void **)&A_layers[3].vm, NULL, A_layers[3].cuda_pbo_resource[0]);
-  cudaGraphicsMapResources(1, &A_layers[4].cuda_pbo_resource[0], 0); cudaGraphicsResourceGetMappedPointer((void **)&A_layers[4].vm, NULL, A_layers[4].cuda_pbo_resource[0]);
-  cudaGraphicsMapResources(1, &A_layers[5].cuda_pbo_resource[0], 0); cudaGraphicsResourceGetMappedPointer((void **)&A_layers[5].vm, NULL, A_layers[5].cuda_pbo_resource[0]);
-  cudaGraphicsMapResources(1, &J_layer.cuda_pbo_resource[0], 0);     cudaGraphicsResourceGetMappedPointer((void **)&J_layer.vm,     NULL, J_layer.cuda_pbo_resource[0]);
-  cudaGraphicsMapResources(1, &B_layers[1].cuda_pbo_resource[0], 0); cudaGraphicsResourceGetMappedPointer((void **)&B_layers[1].vm, NULL, B_layers[1].cuda_pbo_resource[0]);
-  cudaGraphicsMapResources(1, &B_layers[2].cuda_pbo_resource[0], 0); cudaGraphicsResourceGetMappedPointer((void **)&B_layers[2].vm, NULL, B_layers[2].cuda_pbo_resource[0]);
-  cudaGraphicsMapResources(1, &B_layers[3].cuda_pbo_resource[0], 0); cudaGraphicsResourceGetMappedPointer((void **)&B_layers[3].vm, NULL, B_layers[3].cuda_pbo_resource[0]);
-  cudaGraphicsMapResources(1, &B_layers[4].cuda_pbo_resource[0], 0); cudaGraphicsResourceGetMappedPointer((void **)&B_layers[4].vm, NULL, B_layers[4].cuda_pbo_resource[0]);
-  cudaGraphicsMapResources(1, &B_layers[5].cuda_pbo_resource[0], 0); cudaGraphicsResourceGetMappedPointer((void **)&B_layers[5].vm, NULL, B_layers[5].cuda_pbo_resource[0]);
-  */
 
 
   if ( pause_animation == 0 ) {
@@ -50,16 +39,6 @@ void render() {
 	cell_switchesi.sin_3 = (sin (SimTime * Freq_3 * 2 * PI) - 0.125) * Amplitude_3;
         synapseKernelLauncher_a (syn_stream[0], syn_a1, I_cellLayer,  A_cellLayer1, syn_I_A1,  weights_a1, BIG, B2B, s, RADIUS );  
         synapseKernelLauncher_a (syn_stream[1], syn_a2, A_cellLayer1, A_cellLayer2, syn_A1_A2, weights_a2, BIG, B2B, s, RADIUS );  
-	/*
-        synapseKernelLauncher_a (syn_stream[2], syn_a3, A_cellLayer2, A_cellLayer3, syn_A2_A3, weights_a3, BIG, B2B, s, RADIUS );  
-        synapseKernelLauncher_a (syn_stream[3], syn_a4, A_cellLayer3, A_cellLayer4, syn_A3_A4, weights_a4, BIG, B2B, s, RADIUS );  
-        synapseKernelLauncher_a (syn_stream[4], syn_a5, A_cellLayer4, A_cellLayer5, syn_A4_A5, weights_a5, BIG, B2B, s, RADIUS );  
-        synapseKernelLauncher_a (syn_stream[5], syn_b1, I_cellLayer,  B_cellLayer1, syn_I_B1,  weights_b1, BIG, B2B, s, RADIUS );  
-        synapseKernelLauncher_a (syn_stream[6], syn_b2, B_cellLayer1, B_cellLayer2, syn_B1_B2, weights_b2, BIG, B2B, s, RADIUS );  
-        synapseKernelLauncher_a (syn_stream[7], syn_b3, B_cellLayer2, B_cellLayer3, syn_B2_B3, weights_b3, BIG, B2B, s, RADIUS );  
-        synapseKernelLauncher_a (syn_stream[8], syn_b4, B_cellLayer3, B_cellLayer4, syn_B3_B4, weights_b4, BIG, B2B, s, RADIUS );  
-        synapseKernelLauncher_a (syn_stream[9], syn_b5, B_cellLayer4, B_cellLayer5, syn_B4_B5, weights_b5, BIG, B2B, s, RADIUS );  
-	*/
 
 	//sync so that all the synapse kernel launches are forced to complete before cell kernels start to launch
         cudaDeviceSynchronize();
@@ -68,17 +47,6 @@ void render() {
 
         cellKernelLauncher_aelif(cell_stream[11], A_layers[1].vm,   A_cellLayer1, BIG,  cell_switches1,  layer1_params ); 
         cellKernelLauncher_aelif(cell_stream[12], A_layers[2].vm,   A_cellLayer2, BIG,  cell_switches1,  layer1_params ); 
-	/*
-        cellKernelLauncher_aelif(cell_stream[13], A_layers[3].vm,   A_cellLayer3, BIG,  cell_switches1,  layer1_params ); 
-        cellKernelLauncher_aelif(cell_stream[14], A_layers[4].vm,   A_cellLayer4, BIG,  cell_switches1,  layer1_params ); 
-        cellKernelLauncher_aelif(cell_stream[15], A_layers[5].vm,   A_cellLayer5, BIG,  cell_switches1,  layer1_params ); 
-        cellKernelLauncher_aelif(cell_stream[11], J_layer.vm,      J_cellLayer, BIG,   cell_switchesi,  layer1_params ); 
-        cellKernelLauncher_aelif(cell_stream[16], B_layers[1].vm,   B_cellLayer1, BIG,  cell_switches1,  layer1_params ); 
-        cellKernelLauncher_aelif(cell_stream[17], B_layers[2].vm,   B_cellLayer2, BIG,  cell_switches1,  layer1_params ); 
-        cellKernelLauncher_aelif(cell_stream[18], B_layers[3].vm,   B_cellLayer3, BIG,  cell_switches1,  layer1_params ); 
-        cellKernelLauncher_aelif(cell_stream[19], B_layers[4].vm,   B_cellLayer4, BIG,  cell_switches1,  layer1_params ); 
-        cellKernelLauncher_aelif(cell_stream[20], B_layers[5].vm,   B_cellLayer5, BIG,  cell_switches1,  layer1_params ); 
-	*/
 	
 	//sync so that all the cell kernel launches are forced to complete before synapse kernels start to launch
         cudaDeviceSynchronize();
@@ -87,17 +55,6 @@ void render() {
   cudaGraphicsUnmapResources(1, &I_layer.cuda_pbo_resource[0],     0);
   cudaGraphicsUnmapResources(1, &A_layers[1].cuda_pbo_resource[0], 0);
   cudaGraphicsUnmapResources(1, &A_layers[2].cuda_pbo_resource[0], 0);
-  /*
-  cudaGraphicsUnmapResources(1, &A_layers[3].cuda_pbo_resource[0], 0);
-  cudaGraphicsUnmapResources(1, &A_layers[4].cuda_pbo_resource[0], 0);
-  cudaGraphicsUnmapResources(1, &A_layers[5].cuda_pbo_resource[0], 0);
-  cudaGraphicsUnmapResources(1, &J_layer.cuda_pbo_resource[0],     0);
-  cudaGraphicsUnmapResources(1, &B_layers[1].cuda_pbo_resource[0], 0);
-  cudaGraphicsUnmapResources(1, &B_layers[2].cuda_pbo_resource[0], 0);
-  cudaGraphicsUnmapResources(1, &B_layers[3].cuda_pbo_resource[0], 0);
-  cudaGraphicsUnmapResources(1, &B_layers[4].cuda_pbo_resource[0], 0);
-  cudaGraphicsUnmapResources(1, &B_layers[5].cuda_pbo_resource[0], 0);
-  */
 }
 
 
@@ -109,17 +66,6 @@ void display() {
   glutSetWindow(    I_layer.win[0]);  sprintf(title, "%2.3f Seconds", SimTime); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers(); 
   glutSetWindow(A_layers[1].win[0]);  sprintf(title, "A" ); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers(); 
   glutSetWindow(A_layers[2].win[0]);  sprintf(title, "B" ); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers();
-  /*
-  glutSetWindow(A_layers[3].win[0]);  sprintf(title, "C" ); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers();
-  glutSetWindow(A_layers[4].win[0]);  sprintf(title, "D" ); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers();
-  glutSetWindow(A_layers[5].win[0]);  sprintf(title, "E" ); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers();
-  glutSetWindow(    J_layer.win[0]);  sprintf(title, "%2.3f Seconds", SimTime); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers(); 
-  glutSetWindow(B_layers[1].win[0]);  sprintf(title, "A" ); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers(); 
-  glutSetWindow(B_layers[2].win[0]);  sprintf(title, "B" ); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers();
-  glutSetWindow(B_layers[3].win[0]);  sprintf(title, "C" ); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers();
-  glutSetWindow(B_layers[4].win[0]);  sprintf(title, "D" ); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers();
-  glutSetWindow(B_layers[5].win[0]);  sprintf(title, "E" ); draw_texture( BIG, BIG); glutSetWindowTitle(title); glutPostRedisplay(); glutSwapBuffers();
-  */
 }
 
 int main(int argc, char** argv) {
@@ -194,17 +140,6 @@ int main(int argc, char** argv) {
   glutSetWindow(    I_layer.win[0]); glutKeyboardFunc(keyboard); initPixelBuffer(     &I_layer.pbo[0],     &I_layer.tex[0],     &I_layer.cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display);
   glutSetWindow(A_layers[1].win[0]); glutKeyboardFunc(keyboard); initPixelBuffer( &A_layers[1].pbo[0], &A_layers[1].tex[0], &A_layers[1].cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display_nul);
   glutSetWindow(A_layers[2].win[0]); glutKeyboardFunc(keyboard); initPixelBuffer( &A_layers[2].pbo[0], &A_layers[2].tex[0], &A_layers[2].cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display_nul);
-  /*
-  glutSetWindow(A_layers[3].win[0]); glutKeyboardFunc(keyboard); initPixelBuffer( &A_layers[3].pbo[0], &A_layers[3].tex[0], &A_layers[3].cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display_nul);
-  glutSetWindow(A_layers[4].win[0]); glutKeyboardFunc(keyboard); initPixelBuffer( &A_layers[4].pbo[0], &A_layers[4].tex[0], &A_layers[4].cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display_nul);
-  glutSetWindow(A_layers[5].win[0]); glutKeyboardFunc(keyboard); initPixelBuffer( &A_layers[5].pbo[0], &A_layers[5].tex[0], &A_layers[5].cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display_nul);
-  glutSetWindow(    J_layer.win[0]); glutKeyboardFunc(keyboard); initPixelBuffer(     &J_layer.pbo[0],     &J_layer.tex[0],     &J_layer.cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display_nul);
-  glutSetWindow(B_layers[1].win[0]); glutKeyboardFunc(keyboard); initPixelBuffer( &B_layers[1].pbo[0], &B_layers[1].tex[0], &B_layers[1].cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display_nul);
-  glutSetWindow(B_layers[2].win[0]); glutKeyboardFunc(keyboard); initPixelBuffer( &B_layers[2].pbo[0], &B_layers[2].tex[0], &B_layers[2].cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display_nul);
-  glutSetWindow(B_layers[3].win[0]); glutKeyboardFunc(keyboard); initPixelBuffer( &B_layers[3].pbo[0], &B_layers[3].tex[0], &B_layers[3].cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display_nul);
-  glutSetWindow(B_layers[4].win[0]); glutKeyboardFunc(keyboard); initPixelBuffer( &B_layers[4].pbo[0], &B_layers[4].tex[0], &B_layers[4].cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display_nul);
-  glutSetWindow(B_layers[5].win[0]); glutKeyboardFunc(keyboard); initPixelBuffer( &B_layers[5].pbo[0], &B_layers[5].tex[0], &B_layers[5].cuda_pbo_resource[0], BIG );  gluOrtho2D(0, BIG, BIG, 0);  glutMouseFunc(mouse); glutMotionFunc(mouseDrag); glutDisplayFunc(display_nul);
-  */
 
   glutMainLoop();
   atexit(exitfunc);

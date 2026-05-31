@@ -2,7 +2,7 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
-#include "../../cpp_common.h"
+#include "../../src/cpp_common.h"
 
 #define MAX(x, y) (((x) > (y)) ? (x) : (y))
 #define PI 3.1415926

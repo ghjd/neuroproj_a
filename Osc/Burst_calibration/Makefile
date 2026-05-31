@@ -73,13 +73,13 @@ all: build
 
 build: main.exe
 
-main.o:main.cpp activity.inc misc.inc declarations.h ../../kernels.h ../../cpp_common.h
+main.o:main.cpp activity.inc misc.inc declarations.h ../../src/kernels.h ../../src/cpp_common.h
 	$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
 
-cpp_common.o:../../cpp_common.cpp ../../cpp_common.h
+cpp_common.o:../../src/cpp_common.cpp ../../src/cpp_common.h
 	$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
 
-kernels.o:../../kernels.cu ../../kernels.h ../../kernel_common.h ../../synapseKernel_a.inc ../../somaKernel_aelif.inc
+kernels.o:../../src/kernels.cu ../../src/kernels.h ../../src/kernel_common.h ../../src/synapseKernel_a.inc ../../src/somaKernel_aelif.inc
 	$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
 
 main.exe: kernels.o main.o cpp_common.o
